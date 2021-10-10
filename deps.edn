@@ -1,0 +1,47 @@
+{:deps
+ {
+  ;; ...................................................... system
+  org.clojure/clojure {:mvn/version "1.10.3"}
+  org.clojure/clojurescript {:mvn/version "1.10.866"}
+  integrant/integrant {:mvn/version "0.8.0"}
+  environ/environ {:mvn/version "1.2.0"}
+  cprop/cprop {:mvn/version "0.1.18"}
+  clojure.java-time/clojure.java-time {:mvn/version "0.3.2"}
+  com.taoensso/timbre {:mvn/version "5.1.2"}
+  com.fzakaria/slf4j-timbre {:mvn/version "0.3.21"}
+
+  ;; ...................................................... validation
+  metosin/malli {:mvn/version "0.5.1"}
+  metosin/schema-tools {:mvn/version "0.12.3"}
+  prismatic/schema {:mvn/version "1.1.12"}
+
+  ;; ...................................................... db
+  com.xtdb/xtdb-core {:mvn/version "1.19.0-beta1"}
+  com.xtdb/xtdb-rocksdb {:mvn/version "1.19.0-beta1"}
+
+  ;; ...................................................... misc.
+  clojurewerkz/quartzite {:mvn/version "2.1.0"}
+
+  } ;// end :deps
+
+ :paths ["src"]
+
+ :aliases
+ {
+
+  :cider-clj
+  {:extra-deps {cider/cider-nrepl {:mvn/version "0.22.4"}}
+   :jvm-opts ["-Xmx256m"]
+   :main-opts ["-m" "nrepl.cmdline" "-p" "50291"]}
+
+  :jar
+  {:replace-deps
+   {com.github.seancorfield/depstar {:mvn/version "2.1.278"}}
+   :exec-fn hf.depstar/jar
+   :exec-args {}}
+
+  :docs
+  {:extra-deps {docist/docist {:mvn/version "0.1.0-alpha"}}
+   :extra-paths ["dev/tools/src"]
+   :exec-fn st.tools/make-docs!
+   :exec-args {}}}}

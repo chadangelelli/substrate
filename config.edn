@@ -1,0 +1,9 @@
+{
+ :logging
+ {:on? true :levels #{:debug :info :warn :error}}
+
+ ;; :firewall
+ ;; {:allow :all
+ ;;  ;; vs.
+ ;;  :block #{:update! :delete!}}
+ }
