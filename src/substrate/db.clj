@@ -348,61 +348,6 @@
   (log/info "[Substrate] [OK] Database stopped"))
 
 ;;TODO: move into contrib
-;;TODO: rewrite this mess!
-;; (defn inspect
-;;   [uuid]
-;;   (let [uuid (if (uuid? uuid)
-;;                uuid
-;;                (java.util.UUID/fromString uuid))]
-;;     (when-let [doc* (xt/entity (xt/db node_) uuid)]
-;;       (let [doc-id  (:xt/id doc*)
-;;             doc     (dissoc doc* :xt/id)
-;;             ks      (keys doc)
-;;             vs      (vals doc)
-;;             data-ks (filter #(not (string/starts-with? (str %) ":ss")) ks)
-;;             data    (select-keys doc data-ks)
-;;             data-vs (vals data)
-;;             usec-ks (filter #(string/starts-with? (str %) ":ss/up_") ks)
-;;             usec    (select-keys doc usec-ks)
-;;             usec-vs (vals usec)
-;;             max-dk  (apply max (map #(count (str %)) data-ks))
-;;             max-dv  (apply max (map #(count (str %)) data-vs))
-;;             max-uk  (apply max (map #(count (str %)) usec-ks))
-;;             max-uv  (apply max (map #(count (str %)) usec-vs))
-;;             max-k   (max max-dk max-uk)
-;;             max-v   (max max-dv max-uv)
-;;             len     (+ max-k max-v)
-;;             o     [(apply str (repeat 10 "\n"))
-;;                    (apply str (repeat (+ len 10) "="))
-;;                    (str ":xt/id => #uuid \"" doc-id "\"")
-;;                    "\nData" (str "|" (apply str (repeat len "-")))]
-;;             o     (into o
-;;                         (map (fn [[k v]]
-;;                                (let [kl (count (str k))
-;;                                      vl (count (str v))]
-;;                                  (str "| "
-;;                                       k
-;;                                       (apply str (repeat (- max-dk kl) " "))
-;;                                       " | "
-;;                                       v)))
-;;                              data))
-;;             o     (into o
-;;                         ["\nPermissions" (str "|" (apply str (repeat len "-")))])
-;;             o     (into o
-;;                         (map (fn [[k v]]
-;;                                (let [kl (count (str k))
-;;                                      vl (count (str v))]
-;;                                  (str "| "
-;;                                       k
-;;                                       (apply str (repeat (- max-k kl) " "))
-;;                                       " | "
-;;                                       v)))
-;;                              usec))
-;;             ]
-;;         (print (string/join "\n" o))
-;;         ))))
-
-
 (defn inspect
   [uuid]
   (let [doc-id (if (uuid? uuid) uuid (java.util.UUID/fromString uuid))]
